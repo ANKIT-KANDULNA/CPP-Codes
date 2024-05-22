@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    int r,i=0;
+    cout<<"Enter no. of rows:";
+    cin>>r;
+    while(r>i){
+        int j=0;
+        while(r>j){
+            cout<<"* ";
+            j++;
+        }
+        cout<<endl;
+        i++;
+    }
+    return 0;
+}
