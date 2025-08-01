@@ -1,21 +1,27 @@
 #include <iostream>
 using namespace std;
-void InsertionSort(int arr[],int n){
+void InsertionSort(int A[],int n){
+    /*for(int i=1;i<n;i++){
+        int key=arr[i];
+        int j=i-1;
+        while(j>=0 && arr[j]>key){
+            arr[j+1]=arr[j];
+            j--;
+        }
+        arr[j+1]=key;
+    }*/
     for(int i=1;i<n;i++){
-        int temp=arr[i];
+        int key=A[i];
         int j=i-1;
         for(;j>=0;j--){
-            if(temp<arr[j]){
-                arr[j+1]=arr[j];
-            }
-            else{
-                break;
+            if(A[j]>key){
+                A[j+1]=A[j];
             }
         }
-        arr[j+1]=temp;
+        A[j+1]=key;
     }
-    for(int k=0;k<n;k++){
-        cout<<arr[k]<<" ";
+    for(int i=0;i<n;i++){
+        cout<<A[i]<<" ";
     }
 }
 int main(){
