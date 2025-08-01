@@ -1,15 +1,20 @@
 #include <iostream>
 using namespace std;
-void BubbleSort(int arr[],int n){
-    for(int i=0;i<n;i++){
-        for(int j=0;j<n-i;j++){
+void bubbleSort(int arr[], int n) {
+    // Your code here
+    for(int i=n-1;i>=1;i--){
+        for(int j=0;j<=i-1;j++){
             if(arr[j]>arr[j+1]){
-                swap(arr[j],arr[j+1]);
+                int temp=arr[j];
+                arr[j]=arr[j+1];
+                arr[j+1]=temp;
             }
         }
     }
-    for(int k=0;k<n;k++){
-        cout<<arr[k]<<" ";
+}
+void printArray(int arr[],int n){
+    for(int i=0;i<n;i++){
+        cout<<arr[i]<<" ";
     }
 }
 void swap(int x,int y){
@@ -28,6 +33,7 @@ int main(){
         i++;
     }
     cout<<"Sorted array is:";
-    BubbleSort(arr,m);
+    bubbleSort(arr,m);
+    printArray(arr,m);
     return 0;
 }
