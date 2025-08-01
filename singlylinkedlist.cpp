@@ -1,95 +1,86 @@
 #include <iostream>
 using namespace std;
 class Node{
-    public:
+public:
     int data;
     Node *next;
-    //constructor
     Node(int data){
         this->data=data;
         this->next=NULL;
     }
-    //destructor
     ~Node(){
-        int value=this->data;
-        //memory free
-        if(this->next!=NULL){
-            delete next;
-            this->next=NULL;
-        }
-        cout<<"Memory is free for Node with data:"<<value<<endl;    }
+        cout<<"Memory is free for data: "<<this->data<<endl;
+    }
 };
-void InsertAtHead(Node *&head,int d){
-    //create new node
-    Node *temp=new Node(d);
+void insertAtHead(Node *&head,int data){
+    Node *temp=new Node(data);
     temp->next=head;
     head=temp;
 }
-void InsertAtTail(Node *&tail,int d){
-    Node *temp=new Node(d);
+/*
+void insertAtTail(Node *&tail,int data){
+    Node *temp=new Node(data);
     tail->next=temp;
-    tail=temp;
-}
-void InsertAtMiddle(Node *&head,Node *&tail,int d,int i){
-    if(i==1){
-        InsertAtHead(head,d);
-        return;
-    }
+    tail=tail->next;
+}*/
+//code given below is same as insertAtTail function
+void insertLL(Node *&head,int data){
     Node *temp=head;
-    int count=1;
-    while(count<i-1){
+    Node *x=new Node(data);
+    while(temp->next!=NULL){
         temp=temp->next;
-        count++;
     }
-    if(temp->next==NULL){
-        InsertAtTail(tail,d);
+    temp->next=x;
+}
+void insertAtMiddle(Node *&head,int index,int data){
+    if(index==0){
+        insertAtHead(head,data);
         return;
     }
-    //creating a node for d
-    Node *nodetoInsert=new Node(d);
-    nodetoInsert->next=temp->next;
-    temp->next=nodetoInsert;
+    int i=0;
+    Node *temp=head;
+    Node *x=new Node(data);
+    while(i<index-1){
+        temp=temp->next;
+        i++;
+    }
+    x->next=temp->next;
+    temp->next=x;
 }
-void print(Node *&head){
+void deleteNode(Node *&head,int index){
+    Node *temp;
+    if(index==0){
+        temp=head;
+        head=head->next;
+        delete temp;
+        return;
+    }
+    Node *curr=head,*prev=NULL;
+    for(int i=0;i<index;i++){
+        prev=curr;
+        curr=curr->next;
+    }
+    prev->next=curr->next;
+    delete curr;
+}
+void printLL(Node *&head){
     Node *temp=head;
     while(temp!=NULL){
         cout<<temp->data<<" ";
         temp=temp->next;
     }
-}
-void DeleteNode(Node *&head,Node *&curr,int i){
-    if(i==1){
-        Node *temp=head;
-        head=head->next;
-        temp->next=NULL;
-        delete temp;
-    }
-    else{
-        Node *curr=head;
-        Node *prev=NULL;
-        int count=1;
-        while(count<i){
-            prev=curr;
-            curr=curr->next;
-            count++;
-        }
-        prev->next=curr->next;
-        curr->next=NULL;
-        delete curr;
-    }
+    cout<<endl;
 }
 int main(){
-    //create new node
-    Node *node1=new Node(10);
+    Node *node1=new Node(5);
     Node *head=node1;
-    Node *curr=head;
     Node *tail=node1;
-    InsertAtHead(head,12);
-    InsertAtHead(head,15);
-    InsertAtTail(tail,16);
-    InsertAtMiddle(head,tail,9,5);
-    DeleteNode(head,curr,3);
-    print(head);
-    cout<<endl;
+    insertAtHead(head,10);
+    insertLL(head,20);
+    //insertAtTail(tail,20);
+    insertAtMiddle(head,2,15);
+    printLL(head);
+    deleteNode(head,2);
+    printLL(head);
     return 0;
 }

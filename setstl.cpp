@@ -11,7 +11,8 @@ int main(){
     s.insert(4);
     s.insert(6);
     s.insert(6);
-    for(auto i:s){
+    cout<<*s.begin()<<endl;
+    /*for(auto i:s){
         cout<<i<<" ";
     }cout<<endl;
     set<int>::iterator it=s.begin();
@@ -25,6 +26,6 @@ int main(){
     set<int>::iterator itr=s.find(5);
     for(auto it=itr;it!=s.end();it++){
         cout<<*it<<" ";
-    }
+    }*/
     return 0;
 }
