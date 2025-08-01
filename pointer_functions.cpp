@@ -28,6 +28,8 @@ int main(){
 
     int arr[5]={1,2,3,4,5};
     int ans=getsum(arr,5);
+    int result=getsum(arr+2,3);
     cout<<ans<<endl;
+    cout<<result<<endl;
     return 0;
 }
